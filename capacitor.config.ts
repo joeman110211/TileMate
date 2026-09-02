@@ -4,10 +4,6 @@ const config: CapacitorConfig = {
   appId: "com.tilemate.app",
   appName: "TileMate",
   webDir: "dist",
-  server: {
-    url: "https://tile-mate-armq1mps0-joe-cfc4.vercel.app",
-    cleartext: false,
-  },
 };
 
 export default config;
