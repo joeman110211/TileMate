@@ -26,6 +26,15 @@ jobs:
       - name: Build web app
         run: npm run build
 
+      - name: Inspect build output
+        run: |
+          echo "=== ROOT ==="
+          ls -la
+          echo "=== VERCEL STATIC ==="
+          find .vercel/output/static -maxdepth 2 -type f | head -100
+          echo "=== DIST ==="
+          find dist -maxdepth 2 -type f 2>/dev/null | head -100 || true
+
       - name: Prepare Capacitor web assets
         run: |
           rm -rf dist
