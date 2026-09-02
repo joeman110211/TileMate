@@ -50,7 +50,6 @@ export function profileFromBusiness(business: Business): PublicProfile {
   }
   return profile;
 }
-}
 
 export function encodeProfile(profile: PublicProfile): string {
   return toBase64Url(JSON.stringify(profile));
