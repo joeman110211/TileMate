@@ -44,15 +44,26 @@ function fromBase64Url(value: string): string {
 }
 
 export function profileFromBusiness(business: Business): PublicProfile {
-  const profile = {} as PublicProfile;
-  for (const key of PROFILE_KEYS) {
-    Object.assign(profile, { [key]: business[key] });
-  }
-  return profile;
-}
-
-export function encodeProfile(profile: PublicProfile): string {
-  return toBase64Url(JSON.stringify(profile));
+  return {
+    name: business.name,
+    owner: business.owner,
+    phone: business.phone,
+    email: business.email,
+    address: business.address,
+    website: business.website,
+    vatNumber: business.vatNumber,
+    tradeType: business.tradeType,
+    profileTagline: business.profileTagline,
+    profileBio: business.profileBio,
+    profileServices: business.profileServices,
+    profileArea: business.profileArea,
+    profileTemplate: business.profileTemplate,
+    profileAccent: business.profileAccent,
+    profileCta: business.profileCta,
+    facebook: business.facebook,
+    instagram: business.instagram,
+    checkatrade: business.checkatrade,
+  };
 }
 
 export function decodeProfile(value: string): PublicProfile | null {
