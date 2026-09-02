@@ -1,0 +1,50 @@
+name: Prepare TileMate
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout TileMate
+        uses: actions/checkout@v4
+
+      - name: Restore project folders
+        shell: bash
+        run: |
+          set -e
+
+          for file in ./*__*; do
+            [ -f "$file" ] || continue
+
+            name="${file#./}"
+            target="${name//__//}"
+
+            mkdir -p "$(dirname "$target")"
+            git mv "$file" "$target"
+          done
+
+      - name: Commit restored structure
+        shell: bash
+        run: |
+          set -e
+
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "Nothing to change."
+            exit 0
+          fi
+
+          git config user.name "TileMate Builder"
+          git config user.email "actions@github.com"
+
+          git add -A
+          git commit -m "Restore TileMate project structure"
+          git push
