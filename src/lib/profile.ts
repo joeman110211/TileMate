@@ -45,8 +45,11 @@ function fromBase64Url(value: string): string {
 
 export function profileFromBusiness(business: Business): PublicProfile {
   const profile = {} as PublicProfile;
-  for (const key of PROFILE_KEYS) profile[key] = business[key];
+  for (const key of PROFILE_KEYS) {
+    Object.assign(profile, { [key]: business[key] });
+  }
   return profile;
+}
 }
 
 export function encodeProfile(profile: PublicProfile): string {
