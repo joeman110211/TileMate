@@ -137,16 +137,36 @@ function authPopupPlugin(): Plugin {
 // `0.0.0.0:8080` is the live-preview contract — don't change host/port.
 // The dev server starts once `src/router.tsx` and `src/routes/` exist — see
 // AGENTS.md § "First scaffold".
-export default defineConfig(({ command, isPreview }) => ({
-  server: {
-    host: "0.0.0.0",
-    port: 8080,
-    strictPort: true,
-  },
-  preview: {
-    host: "127.0.0.1",
-    port: 8081,
-    strictPort: true,
+export default defineConfig(({ mode }) => {
+  const isAndroid = mode === "android";
+
+  return {
+    server: {
+      host: "0.0.0.0",
+      port: 8080,
+      strictPort: true,
+    },
+    preview: {
+      host: "127.0.0.1",
+      port: 8081,
+      strictPort: true,
+    },
+    resolve: {
+      tsconfigPaths: true,
+    },
+    plugins: [
+      tailwindcss(),
+      tanstackStart(),
+      ...(isAndroid ? [] : [nitro({ preset: "vercel" })]),
+      viteReact(),
+    ],
+    build: isAndroid
+      ? {
+          outDir: "dist",
+        }
+      : undefined,
+  };
+});
   },
   resolve: { tsconfigPaths: true },
   plugins: [tailwindcss(), tanstackStart(), nitro({ preset: "vercel" }), viteReact()],
