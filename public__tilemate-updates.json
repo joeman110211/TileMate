@@ -1,0 +1,21 @@
+{
+  "version": "2026.09.02",
+  "publishedAt": "2026-09-02T00:00:00Z",
+  "summary": "Seeded UK reference pack for TileMate. Your own merchant prices and labour rates remain under your control.",
+  "rates": {
+    "vatPct": 20
+  },
+  "items": [
+    { "key": "vat", "label": "Standard VAT", "value": 20, "unit": "%", "note": "Current standard VAT rate for most goods and services." },
+    { "key": "nlw", "label": "National Living Wage", "value": 12.71, "unit": "£/hr", "note": "Statutory floor for workers aged 21+ from April 2026. It is not a tiler market rate." },
+    { "key": "construction-index", "label": "Construction price data", "note": "Use the linked ONS construction output price indices for the latest UK construction price movement." }
+  ],
+  "sources": [
+    { "title": "GOV.UK VAT rates", "url": "https://www.gov.uk/vat-rates", "note": "Current VAT rates." },
+    { "title": "ONS construction output price indices", "url": "https://www.ons.gov.uk/businessindustryandtrade/constructionindustry/datasets/interimconstructionoutputpriceindices/current", "note": "UK construction price indices." },
+    { "title": "GOV.UK National Minimum Wage", "url": "https://www.gov.uk/national-minimum-wage-rates", "note": "Current statutory minimum wage rates." },
+    { "title": "HSE construction guidance", "url": "https://www.hse.gov.uk/construction/index.htm", "note": "Current construction health and safety guidance." },
+    { "title": "HSE CDM 2015", "url": "https://www.hse.gov.uk/construction/cdm/2015/", "note": "CDM guidance and duties." },
+    { "title": "BSI BS 5385", "url": "https://knowledge.bsigroup.com/products/bs-5385-wall-and-floor-tiling", "note": "Current BS 5385 family." }
+  ]
+}
