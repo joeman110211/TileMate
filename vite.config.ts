@@ -167,7 +167,3 @@ export default defineConfig(({ mode }) => {
       : undefined,
   };
 });
-  },
-  resolve: { tsconfigPaths: true },
-  plugins: [tailwindcss(), tanstackStart(), nitro({ preset: "vercel" }), viteReact()],
-}));
