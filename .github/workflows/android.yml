@@ -26,6 +26,16 @@ jobs:
       - name: Build web app for Android
         run: npm run build -- --mode android
 
+      - name: Check Capacitor web assets
+        run: |
+          echo "Contents of dist:"
+          find dist -maxdepth 2 -type f -print
+
+      - name: Add Android platform
+        run: npx cap add android
+
+      - name: Sync Capacitor
+        run: npx cap sync android
       - name: Inspect build output
         run: |
           echo "=== ROOT ==="
