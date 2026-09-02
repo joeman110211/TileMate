@@ -26,11 +26,14 @@ jobs:
       - name: Build web app
         run: npm run build
 
+      - name: Prepare Capacitor web assets
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          cp -r .vercel/output/static/* dist/
+
       - name: Add Android platform
         run: npx cap add android
-
-      - name: Prepare Android assets
-        run: mkdir -p android/app/src/main/assets
 
       - name: Sync Capacitor
         run: npx cap sync android
