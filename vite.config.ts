@@ -156,10 +156,19 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       tailwindcss(),
-      tanstackStart(),
-      ...(isAndroid ? [] : [nitro({ preset: "vercel" })]),
-      viteReact(),
-    ],
+      tanstackStart({
+    spa: isAndroid
+      ? {
+          enabled: true,
+          prerender: {
+            outputPath: "/index.html",
+          },
+        }
+      : undefined,
+  }),
+  ...(isAndroid ? [] : [nitro({ preset: "vercel" })]),
+  viteReact(),
+],
     build: isAndroid
       ? {
           outDir: "dist",
