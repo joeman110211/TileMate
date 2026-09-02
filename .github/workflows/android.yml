@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build web app
-        run: npm run build
+      - name: Build web app for Android
+        run: npm run build -- --mode android
 
       - name: Inspect build output
         run: |
@@ -35,11 +35,11 @@ jobs:
           echo "=== DIST ==="
           find dist -maxdepth 2 -type f 2>/dev/null | head -100 || true
 
-      - name: Prepare Capacitor web assets
-        run: |
-          rm -rf dist
-          mkdir -p dist
-          cp -r .vercel/output/static/* dist/
+      - name: Add Android platform
+        run: npx cap add android
+
+      - name: Sync Capacitor
+        run: npx cap sync android
 
       - name: Add Android platform
         run: npx cap add android
