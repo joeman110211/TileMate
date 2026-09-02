@@ -65,6 +65,9 @@ export function profileFromBusiness(business: Business): PublicProfile {
     checkatrade: business.checkatrade,
   };
 }
+export function encodeProfile(profile: PublicProfile): string {
+  return toBase64Url(JSON.stringify(profile));
+}
 
 export function decodeProfile(value: string): PublicProfile | null {
   try {
